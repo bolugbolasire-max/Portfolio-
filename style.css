@@ -413,4 +413,45 @@ section h2{
     font-size:32px;
 }
 
+} 
+/* Mobile Navigation */
+
+.menu-toggle{
+    display:none;
+    font-size:32px;
+    cursor:pointer;
+    color:#38bdf8;
+}
+
+@media(max-width:768px){
+
+nav{
+    position:relative;
+    padding:20px;
+}
+
+.menu-toggle{
+    display:block;
+}
+
+#nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    background:#0f172a;
+    padding:20px 0;
+    text-align:center;
+}
+
+#nav-links.active{
+    display:flex;
+}
+
+#nav-links li{
+    margin:15px 0;
+}
+
 }
