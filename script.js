@@ -1,23 +1,39 @@
-const text = "Information Technology Student | Web Developer | Tech Enthusiast";
+const words = [
+    "Full-Stack Developer",
+    "Web Developer",
+    "JavaScript Developer",
+    "Information Technology Student"
+];
 
-let index = 0;
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-function typeWriter() {
+const typing = document.getElementById("typing");
 
-    if (index < text.length) {
+function typeEffect(){
 
-        document.getElementById("typing").innerHTML += text.charAt(index);
+    const currentWord = words[wordIndex];
 
-        index++;
-
-        setTimeout(typeWriter, 70);
-
+    if(!deleting){
+        typing.textContent = currentWord.substring(0,charIndex++);
+    }else{
+        typing.textContent = currentWord.substring(0,charIndex--);
     }
 
+    let speed = deleting ? 60 : 120;
+
+    if(charIndex === currentWord.length + 1){
+        deleting = true;
+        speed = 1500;
+    }
+
+    if(charIndex === 0){
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(typeEffect, speed);
 }
 
-window.onload = function () {
-
-    typeWriter();
-
-};
+typeEffect();
