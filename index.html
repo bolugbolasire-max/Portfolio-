@@ -1,374 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gbolasire Gbolahan Felix | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gbolasire Gbolahan Felix — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2430;
+    --ink-2:#252F3D;
+    --paper:#F7F4EC;
+    --paper-2:#EFEBDF;
+    --brass:#B0812F;
+    --brass-bright:#C99A46;
+    --text-on-ink:#E9E4D6;
+    --text-on-ink-dim:#A7ACB6;
+    --text-on-paper:#23262B;
+    --text-on-paper-dim:#5B5A52;
+    --rule:#3A4353;
+    --rule-light:#DAD4C4;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--text-on-paper);
+    line-height:1.65;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-0.01em}
+  a{color:inherit}
+  img{max-width:100%;display:block}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  /* ===== layout shell ===== */
+  .shell{display:flex;min-height:100vh}
+
+  nav.rail{
+    width:220px;flex-shrink:0;
+    background:var(--ink);
+    color:var(--text-on-ink);
+    padding:40px 30px;
+    position:sticky;top:0;height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .rail-top .mark{
+    font-family:'Fraunces',serif;font-size:22px;font-weight:600;
+    color:var(--brass-bright);margin-bottom:50px;
+  }
+  .rail ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .rail a{
+    text-decoration:none;font-size:15px;color:var(--text-on-ink-dim);
+    transition:color .2s;position:relative;
+  }
+  .rail a:hover,.rail a:focus-visible{color:var(--text-on-ink)}
+  .rail-bottom{font-size:13px;color:var(--text-on-ink-dim)}
+  .rail-bottom a{text-decoration:underline;text-decoration-color:var(--rule)}
+
+  .menu-toggle{display:none}
+
+  main{flex:1;min-width:0}
+
+  section{padding:100px 60px;max-width:900px}
+  section#home{padding-top:110px}
+
+  .kicker{
+    font-size:15px;color:var(--brass);margin-bottom:14px;font-weight:500;
+  }
+
+  /* ===== hero ===== */
+  #home h1{font-size:clamp(38px,5vw,58px);line-height:1.08;margin-bottom:20px}
+  #home .role{
+    font-size:20px;color:var(--text-on-paper-dim);margin-bottom:28px;min-height:28px;
+  }
+  #home .role .cursor{color:var(--brass);}
+  #home p.lede{max-width:56ch;color:var(--text-on-paper-dim);font-size:17px;margin-bottom:38px}
+
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:2px;font-weight:600;
+    text-decoration:none;font-size:15px;transition:transform .15s ease, background .2s;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--ink-2);transform:translateY(-2px)}
+  .btn-ghost{border:1.5px solid var(--rule-light);color:var(--text-on-paper)}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass);transform:translateY(-2px)}
+
+  .id-card{
+    margin-top:56px;border:1px solid var(--rule-light);
+    background:var(--paper-2);max-width:520px;padding:26px 30px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px 30px;
+  }
+  .id-card .field{font-size:13px;color:var(--text-on-paper-dim);margin-bottom:4px}
+  .id-card .value{font-size:15px;font-weight:600}
+
+  /* ===== section headings ===== */
+  h2.section-title{font-size:32px;margin-bottom:12px}
+  p.section-sub{color:var(--text-on-paper-dim);max-width:60ch;margin-bottom:50px;font-size:16px}
+
+  /* ===== about ===== */
+  #about .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px}
+  #about p{color:var(--text-on-paper-dim);margin-bottom:16px;max-width:58ch}
+  #about .facts{border-left:2px solid var(--rule-light);padding-left:24px}
+  #about .facts dt{font-size:13px;color:var(--brass);margin-top:18px;font-weight:600}
+  #about .facts dt:first-child{margin-top:0}
+  #about .facts dd{font-size:15px;margin-top:3px}
+
+  /* ===== skills ===== */
+  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
+  .skill-group h3{font-size:16px;margin-bottom:14px;font-weight:600}
+  .skill-group ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .skill-group li{
+    font-size:14px;padding:6px 12px;border:1px solid var(--rule-light);
+    color:var(--text-on-paper);
+  }
+
+  /* ===== projects: ledger rows ===== */
+  .flagship{
+    border:1px solid var(--ink);background:var(--ink);color:var(--text-on-ink);
+    padding:36px;margin-bottom:56px;
+  }
+  .flagship .kicker{color:var(--brass-bright)}
+  .flagship h3{font-size:26px;margin-bottom:14px;color:var(--paper)}
+  .flagship p{color:var(--text-on-ink-dim);max-width:60ch;margin-bottom:22px;font-size:15.5px}
+  .flagship .tech{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+  .flagship .tech span{font-size:12.5px;color:var(--text-on-ink-dim);border:1px solid var(--rule);padding:5px 10px}
+  .flagship a.btn{background:var(--brass);color:var(--ink)}
+  .flagship a.btn:hover{background:var(--brass-bright)}
+
+  .ledger{border-top:1px solid var(--rule-light)}
+  .row{
+    display:grid;grid-template-columns:1fr 2.3fr auto;gap:24px;align-items:start;
+    padding:26px 0;border-bottom:1px solid var(--rule-light);
+  }
+  .row .rname{font-size:18px;font-weight:600}
+  .row .rdesc{color:var(--text-on-paper-dim);font-size:15px}
+  .row .rtech{margin-top:8px;font-size:13px;color:var(--brass)}
+  .row a.rlink{
+    align-self:center;font-size:14px;font-weight:600;text-decoration:none;
+    white-space:nowrap;border-bottom:1.5px solid var(--brass);padding-bottom:2px;
+  }
+  .row a.rlink:hover{color:var(--brass)}
+
+  /* ===== contact ===== */
+  #contact{padding-bottom:130px}
+  .contact-block{border-top:1px solid var(--rule-light);padding-top:40px;
+    display:flex;flex-wrap:wrap;gap:50px;justify-content:space-between}
+  .contact-block .lead{max-width:34ch}
+  .contact-block .lead p{color:var(--text-on-paper-dim);margin-top:12px;font-size:16px}
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .contact-list .field{font-size:13px;color:var(--text-on-paper-dim)}
+  .contact-list .value{font-size:17px;font-weight:600;text-decoration:none;display:inline-block;margin-top:2px}
+  .contact-list a.value:hover{color:var(--brass)}
+
+  footer{
+    text-align:left;padding:28px 60px;color:var(--text-on-paper-dim);
+    font-size:13px;border-top:1px solid var(--rule-light);
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .fade-in{animation:fadeUp .7s ease both}
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ===== mobile ===== */
+  @media (max-width:900px){
+    .shell{flex-direction:column}
+    nav.rail{
+      width:100%;height:auto;position:sticky;top:0;padding:18px 24px;
+      flex-direction:row;align-items:center;justify-content:space-between;z-index:50;
+    }
+    .rail-top{display:flex;align-items:center}
+    .rail-top .mark{margin-bottom:0}
+    .rail ul{
+      display:none;position:absolute;top:64px;left:0;width:100%;
+      background:var(--ink);flex-direction:column;padding:20px 24px;gap:16px;
+      border-top:1px solid var(--rule);
+    }
+    .rail ul.open{display:flex}
+    .rail-bottom{display:none}
+    .menu-toggle{
+      display:block;background:none;border:none;color:var(--text-on-ink);
+      font-size:26px;cursor:pointer;line-height:1;
+    }
+    section{padding:60px 24px}
+    #about .about-grid{grid-template-columns:1fr;gap:36px}
+    #about .facts{border-left:none;padding-left:0;border-top:2px solid var(--rule-light);padding-top:20px}
+    .row{grid-template-columns:1fr;gap:8px}
+    .row a.rlink{justify-self:start}
+    .id-card{grid-template-columns:1fr 1fr}
+    footer{padding:24px}
+  }
+</style>
 </head>
-
 <body>
 
-<header>
-
-<nav>
-
-<div class="logo">Felix.dev</div>
-
-<div class="menu-toggle" id="menu-toggle">
-☰
-</div>
-
-<ul id="nav-links">
-
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-</nav>
-
-</header>
-
-<section id="home" class="hero">
-
-<div class="hero-text">
-
-<h3>Hello, I'm</h3>
-
-<h1>Gbolasire Gbolahan Felix</h1>
-
-<h2 id="typing"></h2>
-
-<p>
-An Information Technology student passionate about creating responsive websites,
-modern web applications and solving real-world problems through technology.
-</p>
-
-<div class="buttons">
-
-<a href="#projects" class="btn">View Projects</a>
-
-<a href="#contact" class="btn btn-outline">Contact Me</a>
-
-</div>
-
-</div>
-
-<div class="hero-image">
-
-<img src="images/profile.png" alt="Profile Picture">
-
-</div>
-
-</section>
-
-<section id="about">
-
-<h2>About Me</h2>
-
-<div class="about-container">
-
-<div>
-
-<p>
-
-I am <strong>Gbolasire Gbolahan Felix</strong>, a 400-level Information Technology
-student at Osun State University.
-
-I enjoy building beautiful websites, JavaScript applications and software
-solutions that solve real-life problems.
-
-My goal is to become a professional Full-Stack Software Developer while
-building innovative solutions for businesses and educational institutions.
-
-</p>
-
-</div>
-
-<div class="about-box">
-
-<h3>Education</h3>
-
-<p>Osun State University</p>
-
-<p>Information Technology</p>
-
-<p>400 Level Student</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="skills">
-
-<h2>Technical Skills</h2>
-
-<div class="skill">
-
-<p>HTML</p>
-
-<div class="bar">
-<div class="html"></div>
-</div>
-
-</div>
-
-<div class="skill">
-
-<p>CSS</p>
-
-<div class="bar">
-<div class="css"></div>
-</div>
-
-</div>
-
-<div class="skill">
-
-<p>JavaScript</p>
-
-<div class="bar">
-<div class="javascript"></div>
-</div>
-
-</div>
-
-<div class="skill">
-
-<p>Responsive Web Design</p>
-
-<div class="bar">
-<div class="responsive"></div>
-</div>
-
-</div>
-
-</section>
-<!-- Projects -->
-
-<section id="projects">
-
-    <h2>Featured Projects</h2>
-
-    <div class="projects-grid">
-
-        <div class="project">
-            <img src="images/portfolio.png" alt="Portfolio Website">
-
-            <div class="project-content">
-
-                <h3>Personal Portfolio</h3>
-
-                <p>
-                    A responsive portfolio website showcasing my skills, projects and contact information.
-                </p>
-
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <a href="https://bolugbolasire-max.github.io/Portfolio-/" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+<div class="shell">
+
+  <nav class="rail" aria-label="Primary">
+    <div class="rail-top">
+      <div class="mark">G.G.F.</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+    <ul id="railLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="rail-bottom">
+      <a href="mailto:bolugbolasire@gmail.com">bolugbolasire@gmail.com</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section id="home">
+      <div class="kicker fade-in">Information Technology · Osun State University</div>
+      <h1 class="fade-in">Gbolasire Gbolahan Felix</h1>
+      <div class="role fade-in" id="typing" aria-live="polite"></div>
+      <p class="lede fade-in">
+        A 400-level IT student and full-stack developer who builds systems that solve
+        real institutional problems — from attendance verification to everyday
+        JavaScript tools. Currently building AttendX, a smart attendance platform for
+        universities.
+      </p>
+      <div class="cta-row fade-in">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+
+      <div class="id-card fade-in">
+        <div>
+          <div class="field">Institution</div>
+          <div class="value">Osun State University</div>
         </div>
-
-        <div class="project">
-            <img src="images/blog.png" alt="Blog Website">
-
-            <div class="project-content">
-
-                <h3>The Nigerian Lens</h3>
-
-                <p>
-                    A technology and Nigerian politics blog built on Blogger.
-                </p>
-
-                <div class="tech">
-                    <span>Blogger</span>
-                    <span>SEO</span>
-                </div>
-
-                <a href="https://the-nigerian-lens.blogspot.com/" target="_blank">
-                    Visit Blog →
-                </a>
-
-            </div>
+        <div>
+          <div class="field">Programme</div>
+          <div class="value">Information Technology</div>
         </div>
-
-        <div class="project">
-            <img src="images/calculator.png" alt="Scientific Calculator">
-
-            <div class="project-content">
-
-                <h3>Scientific Calculator</h3>
-
-                <p>
-                    A modern scientific calculator with voice output and advanced mathematical functions.
-                </p>
-
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <a href="https://bolugbolasire-max.github.io/Scientific-Calculator-/" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+        <div>
+          <div class="field">Level</div>
+          <div class="value">400</div>
         </div>
-
-        <div class="project">
-            <img src="images/fullname.png" alt="Full Name Generator">
-
-            <div class="project-content">
-
-                <h3>Full Name Generator</h3>
-
-                <p>
-                    Generates complete names with copy and clear functionality.
-                </p>
-
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <a href="https://bolugbolasire-max.github.io/Full-Name-Generator-/" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+        <div>
+          <div class="field">Focus</div>
+          <div class="value">Full-Stack Development</div>
         </div>
+      </div>
+    </section>
 
-        <div class="project">
-            <img src="images/scoreboard.png" alt="Scoreboard App">
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">A short account of what I do and why.</p>
 
-            <div class="project-content">
-
-                <h3>Scoreboard App</h3>
-
-                <p>
-                    A responsive scoreboard for tracking scores between two teams.
-                </p>
-
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <a href="https://bolugbolasire-max.github.io/Scoreboard-App/" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+      <div class="about-grid">
+        <div>
+          <p>
+            I'm a 400-level Information Technology student at Osun State University,
+            and I spend most of my time outside class writing JavaScript, shipping
+            small tools, and trying to figure out how software can replace the paper
+            processes still common at Nigerian institutions.
+          </p>
+          <p>
+            That instinct led to AttendX, an attendance platform I founded to replace
+            manual sign-in sheets with QR codes, GPS checks, and facial verification —
+            built with dashboards for students, lecturers, and administrators.
+          </p>
+          <p>
+            I also write about technology and Nigerian politics on my blog, The
+            Nigerian Lens, and I'm working toward becoming a full-stack developer who
+            builds for education and public institutions.
+          </p>
         </div>
+        <dl class="facts">
+          <dt>Status</dt>
+          <dd>400-level student, IT</dd>
+          <dt>Institution</dt>
+          <dd>Osun State University</dd>
+          <dt>Building</dt>
+          <dd>AttendX — attendance platform</dd>
+          <dt>Writing</dt>
+          <dd>The Nigerian Lens</dd>
+          <dt>Goal</dt>
+          <dd>Full-stack software developer</dd>
+        </dl>
+      </div>
+    </section>
 
-        <div class="project">
-            <img src="images/attendance.png" alt="Attendance Management System">
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">What I build with, grouped by how I use it.</p>
 
-            <div class="project-content">
-
-                <h3>Attendance Management System</h3>
-
-                <p>
-                    A web application for recording student attendance and monitoring attendance statistics.
-                </p>
-
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <a href="https://bolugbolasire-max.github.io/Attendance-App/" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Core languages</h3>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
         </div>
+        <div class="skill-group">
+          <h3>Building for</h3>
+          <ul>
+            <li>Responsive web design</li>
+            <li>Interactive UI</li>
+            <li>Dashboards</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Applied on AttendX</h3>
+          <ul>
+            <li>QR code systems</li>
+            <li>GPS verification</li>
+            <li>Facial recognition</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <div class="project">
-    <img src="images/attendx.png" alt="AttendX Platform">
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">A mix of one founded product and a set of smaller tools I've shipped.</p>
 
-    <div class="project-content">
-
-        <h3>AttendX – Founder & Creator</h3>
-
+      <div class="flagship">
+        <div class="kicker">Founder &amp; Creator</div>
+        <h3>AttendX</h3>
         <p>
-            AttendX is a smart attendance management platform built for universities and higher institutions. It replaces manual sign-in sheets with secure QR code, GPS, and facial verification to prevent impersonation while providing fast, accurate, and fully digital attendance tracking. The platform includes dedicated dashboards for students, lecturers, school administrators, and super administrators for complete institutional oversight.
+          A smart attendance management platform built for universities and higher
+          institutions. It replaces manual sign-in sheets with QR code, GPS, and
+          facial verification to prevent impersonation, with dedicated dashboards
+          for students, lecturers, school administrators, and super administrators.
         </p>
-
         <div class="tech">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>Face Recognition</span>
-            <span>GPS</span>
-            <span>QR Code</span>
+          <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          <span>Face Recognition</span><span>GPS</span><span>QR Code</span>
         </div>
+        <a class="btn" href="https://attendx00.netlify.app" target="_blank" rel="noopener">Visit AttendX</a>
+      </div>
 
-        <a href="https://attendx00.netlify.app" target="_blank">
-            Visit AttendX →
-        </a>
+      <div class="ledger">
+        <div class="row">
+          <div class="rname">Personal Portfolio</div>
+          <div>
+            <div class="rdesc">A responsive portfolio site showcasing my skills, projects, and contact information.</div>
+            <div class="rtech">HTML · CSS · JavaScript</div>
+          </div>
+          <a class="rlink" href="https://bolugbolasire-max.github.io/Portfolio-/" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="row">
+          <div class="rname">The Nigerian Lens</div>
+          <div>
+            <div class="rdesc">A technology and Nigerian politics blog, built and run on Blogger.</div>
+            <div class="rtech">Blogger · SEO</div>
+          </div>
+          <a class="rlink" href="https://the-nigerian-lens.blogspot.com/" target="_blank" rel="noopener">Visit blog</a>
+        </div>
+        <div class="row">
+          <div class="rname">Scientific Calculator</div>
+          <div>
+            <div class="rdesc">A scientific calculator with voice output and advanced mathematical functions.</div>
+            <div class="rtech">HTML · CSS · JavaScript</div>
+          </div>
+          <a class="rlink" href="https://bolugbolasire-max.github.io/Scientific-Calculator-/" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="row">
+          <div class="rname">Full Name Generator</div>
+          <div>
+            <div class="rdesc">Generates complete names with copy and clear functionality.</div>
+            <div class="rtech">HTML · CSS · JavaScript</div>
+          </div>
+          <a class="rlink" href="https://bolugbolasire-max.github.io/Full-Name-Generator-/" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="row">
+          <div class="rname">Scoreboard App</div>
+          <div>
+            <div class="rdesc">A responsive scoreboard for tracking scores between two teams.</div>
+            <div class="rtech">HTML · CSS · JavaScript</div>
+          </div>
+          <a class="rlink" href="https://bolugbolasire-max.github.io/Scoreboard-App/" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="row">
+          <div class="rname">Attendance Management System</div>
+          <div>
+            <div class="rdesc">A web application for recording student attendance and monitoring attendance statistics.</div>
+            <div class="rtech">HTML · CSS · JavaScript</div>
+          </div>
+          <a class="rlink" href="https://bolugbolasire-max.github.io/Attendance-App/" target="_blank" rel="noopener">View project</a>
+        </div>
+      </div>
+    </section>
 
-    </div>
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-block">
+        <div class="lead">
+          <h3 class="display" style="font-size:22px">Let's connect</h3>
+          <p>Open to opportunities, collaborations, and conversations about building
+          software for education and public institutions.</p>
+        </div>
+        <ul class="contact-list">
+          <li>
+            <div class="field">Email</div>
+            <a class="value" href="mailto:bolugbolasire@gmail.com">bolugbolasire@gmail.com</a>
+          </li>
+          <li>
+            <div class="field">Phone</div>
+            <a class="value" href="tel:+2348104325326">0810 432 5326</a>
+          </li>
+          <li>
+            <div class="field">Blog</div>
+            <a class="value" href="https://the-nigerian-lens.blogspot.com/" target="_blank" rel="noopener">the-nigerian-lens.blogspot.com</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>© 2026 Gbolasire Gbolahan Felix. All rights reserved.</footer>
+
+  </main>
 </div>
-    </div>
 
-</section>
+<script>
+  // typing effect
+  const words = ["Full-Stack Developer","Web Developer","JavaScript Developer","IT Student"];
+  let wi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typing');
+  function tick(){
+    const w = words[wi];
+    el.textContent = deleting ? w.substring(0, ci--) : w.substring(0, ci++);
+    let speed = deleting ? 45 : 90;
+    if(ci === w.length + 1){ deleting = true; speed = 1400; }
+    if(ci === 0 && deleting){ deleting = false; wi = (wi+1) % words.length; }
+    setTimeout(tick, speed);
+  }
+  tick();
 
-<!-- Contact -->
-
-<section id="contact">
-
-    <h2>Let's Connect</h2>
-
-    <div class="contact-grid">
-
-        <div class="contact-card">
-            <h3>Email</h3>
-            <p>bolugbolasire@gmail.com</p>
-        </div>
-
-        <div class="contact-card">
-            <h3>Phone</h3>
-            <p>08104325326</p>
-        </div>
-
-        <div class="contact-card">
-            <h3>Blog</h3>
-            <p>the-nigerian-lens.blogspot.com</p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-
-<p>© 2026 Gbolasire Gbolahan Felix | All Rights Reserved.</p>
-
-</footer>
-
-<script src="script.js"></script>
+  // mobile nav
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('railLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
 
 </body>
 </html>
